@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1t2dk3gg3mjp"]
+
+[ext_resource type="PackedScene" uid="uid://cbqsxagb7sifd" path="res://player.tscn" id="1_8lrsb"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="2_xgn4q"]
+[ext_resource type="PackedScene" uid="uid://wnr8coiy1ik8" path="res://cactus1.tscn" id="3_p7n47"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_broki"]
+size = Vector2(1442, 20)
+
+[node name="Corridor" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(711, 0)
+shape = SubResource("RectangleShape2D_broki")
+
+[node name="Player" parent="." instance=ExtResource("1_8lrsb")]
+position = Vector2(29, -29)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 1439.0
+offset_bottom = 10.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+script = ExtResource("2_xgn4q")
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("3_p7n47")]
+position = Vector2(273, -23)

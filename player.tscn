@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbqsxagb7sifd"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_4rhlg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvvwn"]
+size = Vector2(20, 34)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_4rhlg")
+
+[node name="colisao1" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_dvvwn")
+
+[node name="ColorRect" type="ColorRect" parent="colisao1"]
+offset_left = -10.0
+offset_right = 10.0
+offset_bottom = 17.0
+color = Color(0.0705882, 1, 1, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="colisao1/ColorRect"]
+layout_mode = 0
+offset_top = -17.0
+offset_right = 20.0
+color = Color(0.905882, 0.917647, 0.247059, 1)
+
+[node name="colisao2" type="CollisionShape2D" parent="."]
+process_mode = 4
+visible = false
+position = Vector2(7, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_dvvwn")
+
+[node name="ColorRect" type="ColorRect" parent="colisao2"]
+offset_left = -10.0
+offset_right = 10.0
+offset_bottom = 17.0
+color = Color(0.0705882, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="colisao2/ColorRect"]
+layout_mode = 0
+offset_top = -17.0
+offset_right = 20.0
+color = Color(0.905882, 0.917647, 0.247059, 1)
+metadata/_edit_use_anchors_ = true
