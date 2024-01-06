@@ -10,3 +10,4 @@ func _ready():
 func _process(delta):
 	if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_up")):
 		zoom = Vector2(1,1)
+		Global.start = true
