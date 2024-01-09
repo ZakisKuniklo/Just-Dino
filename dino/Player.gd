@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 var jump_buffer_time = 0.1
-var jump_buffer = false
 const SPEED = 300.0
 var JUMP_VELOCITY = -400.0
 
@@ -15,10 +14,9 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	
 	# Handle Jump.
-	if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_up")) or jump_buffer:
+	if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_up")):
 		if is_on_floor():
 			velocity.y = JUMP_VELOCITY
-			jump_buffer = false
 		else:
 			$JumpBuffer.start(jump_buffer_time)
 	
@@ -56,5 +54,4 @@ func levantar():
 	JUMP_VELOCITY = -400.0
 
 
-func _on_timer_timeout():
-	jump_buffer = false
+
