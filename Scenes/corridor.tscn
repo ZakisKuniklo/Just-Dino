@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1t2dk3gg3mjp"]
 
 [ext_resource type="PackedScene" uid="uid://cbqsxagb7sifd" path="res://dino/player.tscn" id="1_8lrsb"]
-[ext_resource type="Script" path="res://Camera2D.gd" id="2_xgn4q"]
 [ext_resource type="PackedScene" uid="uid://wnr8coiy1ik8" path="res://obstacles/cactus1.tscn" id="3_p7n47"]
+[ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="3_y7wpq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_broki"]
 size = Vector2(1442, 20)
@@ -26,7 +26,7 @@ offset_bottom = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
-script = ExtResource("2_xgn4q")
+script = ExtResource("3_y7wpq")
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("3_p7n47")]
 position = Vector2(273, -23)

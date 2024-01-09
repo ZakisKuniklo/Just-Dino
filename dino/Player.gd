@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-
+var jump_buffer_time = 0.1
+var jump_buffer = false
 const SPEED = 300.0
 var JUMP_VELOCITY = -400.0
 
@@ -12,10 +13,19 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
+	
 	# Handle Jump.
-	if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_up")) and is_on_floor():
+	if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_up")) or jump_buffer:
+		if is_on_floor():
+			velocity.y = JUMP_VELOCITY
+			jump_buffer = false
+		else:
+			$JumpBuffer.start(jump_buffer_time)
+	
+	if is_on_floor() && !$JumpBuffer.is_stopped():
+		$JumpBuffer.stop()
 		velocity.y = JUMP_VELOCITY
+		
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -44,3 +54,7 @@ func levantar():
 	get_node("colisao1").set_process(true)
 	get_node("colisao1").visible = true
 	JUMP_VELOCITY = -400.0
+
+
+func _on_timer_timeout():
+	jump_buffer = false
