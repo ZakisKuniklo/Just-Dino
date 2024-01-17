@@ -25,6 +25,8 @@ offset_right = 1439.0
 offset_bottom = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(48, -32)
+scale = Vector2(5, 5)
 zoom = Vector2(5, 5)
 script = ExtResource("3_y7wpq")
 
