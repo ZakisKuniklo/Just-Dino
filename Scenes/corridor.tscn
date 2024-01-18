@@ -31,3 +31,5 @@ script = ExtResource("3_y7wpq")
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("3_p7n47")]
 position = Vector2(273, -23)
+
+[node name="Spawner" type="Timer" parent="."]
