@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1t2dk3gg3mjp"]
+[gd_scene load_steps=6 format=3 uid="uid://d1t2dk3gg3mjp"]
 
 [ext_resource type="PackedScene" uid="uid://cbqsxagb7sifd" path="res://dino/player.tscn" id="1_8lrsb"]
 [ext_resource type="PackedScene" uid="uid://wnr8coiy1ik8" path="res://obstacles/cactus1.tscn" id="3_p7n47"]
 [ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="3_y7wpq"]
+[ext_resource type="Script" path="res://Scenes/Spawner.gd" id="4_menf8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_broki"]
 size = Vector2(1442, 20)
@@ -30,6 +31,11 @@ zoom = Vector2(5, 5)
 script = ExtResource("3_y7wpq")
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("3_p7n47")]
-position = Vector2(273, -23)
+position = Vector2(592, -24)
 
 [node name="Spawner" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.9
+script = ExtResource("4_menf8")
+
+[connection signal="timeout" from="Spawner" to="Spawner" method="_on_timeout"]

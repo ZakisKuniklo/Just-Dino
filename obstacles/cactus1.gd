@@ -12,6 +12,6 @@ func _process(delta):
 		position.x -= x
 		x = x *1.005
 	
-	if position.x < 771:
+	if position.x < -10:
 		queue_free()
 	pass
