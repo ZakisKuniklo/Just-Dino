@@ -10,7 +10,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
 	# Add the gravity.
-	velocity.y += gravity * delta
+	if not is_on_floor() and (Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_up")): 
+		velocity.y += (gravity*0.8) * delta
+	else:
+		velocity.y += gravity * delta
 	# Handle Jump and Jump Buffer.
 	if (Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_up")):
 		if is_on_floor():
@@ -24,6 +27,7 @@ func _physics_process(delta):
 	#Crouching
 	if Input.is_action_pressed("ui_down"):
 		abaixar()
+		velocity.y += gravity * 0.5 * delta
 	else:
 		levantar()
 	move_and_slide()
@@ -36,14 +40,12 @@ func abaixar():
 	get_node("colisao2").visible = true
 	get_node("colisao1").set_process(false)
 	get_node("colisao1").visible = false
-	JUMP_VELOCITY = -300.0
 
 func levantar():
 	get_node("colisao2").set_process(false)
 	get_node("colisao2").visible = false
 	get_node("colisao1").set_process(true)
 	get_node("colisao1").visible = true
-	JUMP_VELOCITY = -400.0
 
 
 
