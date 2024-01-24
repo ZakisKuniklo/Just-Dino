@@ -10,7 +10,7 @@ func _ready():
 func _process(delta):
 	if Global.start:
 		position.x -= x
-		x = x *1.005
+		#x = x *1.005
 	
 	if position.x < -10:
 		queue_free()

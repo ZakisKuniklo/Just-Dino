@@ -35,7 +35,6 @@ position = Vector2(592, -24)
 
 [node name="Spawner" type="Timer" parent="."]
 process_callback = 0
-wait_time = 0.9
 script = ExtResource("4_menf8")
 
 [connection signal="timeout" from="Spawner" to="Spawner" method="_on_timeout"]
