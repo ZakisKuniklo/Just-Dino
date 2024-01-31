@@ -11,4 +11,5 @@ func _process(delta):
 		position = Vector2(280,-154)
 		Global.start = true
 		$"../Spawner".start()
+		$"../ScoreIncreaser".start()
 		

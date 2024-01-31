@@ -1,9 +1,6 @@
-extends Node
+extends Timer
 
-var start = false
-var score = 0
-var spawnSpeed = 1
-var obstacleSpeed = 1.6
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -12,3 +9,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_timeout():
+	Global.score +=1
+	if(Global.score % 100 == 0):
+		Global.spawnSpeed -= 0.05
+		Global.obstacleSpeed += 0.1
+	print(Global.score)
+	
