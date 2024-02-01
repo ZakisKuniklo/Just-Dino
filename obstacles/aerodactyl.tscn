@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1ifvje6nknmc"]
+[gd_scene load_steps=3 format=3 uid="uid://dc5tsoex7b428"]
 
 [ext_resource type="Script" path="res://obstacles/aerodactyl.gd" id="1_j3dyg"]
 
