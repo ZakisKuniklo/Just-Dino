@@ -16,5 +16,5 @@ func _on_timeout():
 	if(Global.score % 100 == 0 && Global.spawnSpeed > 1 && Global.obstacleSpeed< 10):
 		Global.spawnSpeed -= 0.05
 		Global.obstacleSpeed += 0.1
-	#print(Global.score)
+	print(Global.score)
 	

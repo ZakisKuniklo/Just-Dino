@@ -11,7 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor() and (Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_up")): 
-		velocity.y += (gravity*0.9) * delta
+		velocity.y += (gravity*0.95) * delta
 	else:
 		velocity.y += gravity * delta
 	# Handle Jump and Jump Buffer.
