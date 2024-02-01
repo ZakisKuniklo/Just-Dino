@@ -36,15 +36,15 @@ func pulo():
 	velocity.y = JUMP_VELOCITY
 	
 func abaixar():
-	get_node("colisao2").set_process(true)
+	get_node("colisao2").set_deferred('disabled',false)
 	get_node("colisao2").visible = true
-	get_node("colisao1").set_process(false)
+	get_node("colisao1").set_deferred('disabled',true)
 	get_node("colisao1").visible = false
 
 func levantar():
-	get_node("colisao2").set_process(false)
+	get_node("colisao2").set_deferred('disabled',true)
 	get_node("colisao2").visible = false
-	get_node("colisao1").set_process(true)
+	get_node("colisao1").set_deferred('disabled',false)
 	get_node("colisao1").visible = true
 
 

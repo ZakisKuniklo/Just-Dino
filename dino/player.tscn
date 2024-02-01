@@ -30,6 +30,7 @@ visible = false
 position = Vector2(7, 0)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_dvvwn")
+disabled = true
 
 [node name="ColorRect" type="ColorRect" parent="colisao2"]
 offset_left = -10.0
