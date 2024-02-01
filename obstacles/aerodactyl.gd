@@ -1,9 +1,6 @@
-extends Node
+extends StaticBody2D
 
-var start = false
-var score = 0
-var spawnSpeed = 3
-var obstacleSpeed = 1.6
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -11,4 +8,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Global.start:
+		position.x -= Global.obstacleSpeed
+		#x = x *1.005
+	
+	if position.x < -10:
+		queue_free()
 	pass

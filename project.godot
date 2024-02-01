@@ -13,6 +13,9 @@ config_version=5
 config/name="Just dino"
 run/main_scene="res://Scenes/corridor.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -23,3 +26,4 @@ Global="*res://Global.gd"
 
 window/size/viewport_width=576
 window/size/viewport_height=324
+window/size/resizable=false
