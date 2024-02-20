@@ -13,8 +13,10 @@ func _process(delta):
 
 func _on_timeout():
 	Global.score +=1
-	if(Global.score % 100 == 0 && Global.spawnSpeed > 1 && Global.obstacleSpeed< 10):
+	if(Global.score % 20 == 0):
 		Global.spawnSpeed -= 0.05
+		Global.spawnSpeed = clamp(Global.spawnSpeed,0.5,3)
 		Global.obstacleSpeed += 0.1
+		Global.obstacleSpeed = clamp(Global.obstacleSpeed,3,20)
 	print(Global.score)
 	

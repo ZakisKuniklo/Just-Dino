@@ -10,6 +10,7 @@ func _ready():
 func _process(delta):
 	if Global.start:
 		position.x -= Global.obstacleSpeed
+
 	
 	if position.x < -10:
 		queue_free()
