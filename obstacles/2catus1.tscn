@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://obstacles/2cactus1.gd" id="1_8i28e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5qu3m"]
-size = Vector2(16, 34)
+size = Vector2(9, 34)
 
 [node name="StaticBody2D2" type="StaticBody2D"]
 script = ExtResource("1_8i28e")
