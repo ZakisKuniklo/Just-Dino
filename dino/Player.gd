@@ -4,6 +4,7 @@ var jump_buffer_time = 0.1
 const SPEED = 300.0
 var JUMP_VELOCITY = -350.0
 
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -40,14 +41,18 @@ func abaixar():
 	get_node("colisao2").visible = true
 	get_node("colisao1").set_deferred('disabled',true)
 	get_node("colisao1").visible = false
+	var animationDino = $colisao2/DinoCrowching/AnimationPlayer
+	animationDino.play("dinoCrowching")
 
 func levantar():
 	get_node("colisao2").set_deferred('disabled',true)
 	get_node("colisao2").visible = false
 	get_node("colisao1").set_deferred('disabled',false)
 	get_node("colisao1").visible = true
+	var animationDino = $colisao1/DinoStanding/AnimationPlayer
+	animationDino.play("dinoStanding")
 
 
-
-
-
+func _on_camera_2d_start():
+	var animationDino = $colisao1/DinoStanding/AnimationPlayer
+	animationDino.play("dinoStanding")
