@@ -41,16 +41,16 @@ func abaixar():
 	get_node("colisao2").visible = true
 	get_node("colisao1").set_deferred('disabled',true)
 	get_node("colisao1").visible = false
-	var animationDino = $colisao2/DinoCrowching/AnimationPlayer
-	animationDino.play("dinoCrowching")
+	#var animationDino = $colisao2/DinoCrowching/AnimationPlayer
+	#animationDino.play("dinoCrowching")
 
 func levantar():
 	get_node("colisao2").set_deferred('disabled',true)
 	get_node("colisao2").visible = false
 	get_node("colisao1").set_deferred('disabled',false)
 	get_node("colisao1").visible = true
-	var animationDino = $colisao1/DinoStanding/AnimationPlayer
-	animationDino.play("dinoStanding")
+	#var animationDino = $colisao1/DinoStanding/AnimationPlayer
+	#animationDino.play("dinoStanding")
 
 
 func _on_camera_2d_start():
