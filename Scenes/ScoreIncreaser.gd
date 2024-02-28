@@ -20,3 +20,7 @@ func _on_timeout():
 		Global.obstacleSpeed = clamp(Global.obstacleSpeed,3,20)
 	print(Global.score)
 	
+
+
+func _on_camera_2d_start():
+	start()

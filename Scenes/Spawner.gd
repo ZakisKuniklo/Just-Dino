@@ -24,3 +24,8 @@ func _on_timeout():
 	add_child(obstaculo)
 	wait_time = Global.spawnSpeed
 
+
+
+func _on_camera_2d_start():
+	start()
+	

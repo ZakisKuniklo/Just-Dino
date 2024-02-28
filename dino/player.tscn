@@ -1,14 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbqsxagb7sifd"]
+[gd_scene load_steps=8 format=3 uid="uid://cbqsxagb7sifd"]
 
 [ext_resource type="Script" path="res://dino/Player.gd" id="1_25lb7"]
-[ext_resource type="Texture2D" uid="uid://bw50wj61dfgw8" path="res://dino/dino.png" id="2_1cflt"]
-[ext_resource type="Texture2D" uid="uid://bcjp4hh6uupds" path="res://dino/downdino.png" id="3_7ma07"]
+[ext_resource type="Texture2D" uid="uid://c5il7rwjpwi7n" path="res://dino/dino.png" id="2_1cflt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dvvwn"]
 size = Vector2(19.5, 34)
 
-[sub_resource type="Animation" id="Animation_ej4eg"]
-resource_name = "dinoStanding"
+[sub_resource type="Animation" id="Animation_l7mg8"]
+resource_name = "WalkingStanding"
 length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
@@ -24,13 +23,25 @@ tracks/0/keys = {
 "values": [2, 3]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7jo27"]
-_data = {
-"dinoStanding": SubResource("Animation_ej4eg")
+[sub_resource type="Animation" id="Animation_gs078"]
+resource_name = "Blinking"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
 }
 
-[sub_resource type="Animation" id="Animation_8ihdw"]
-resource_name = "dinoCrowching"
+[sub_resource type="Animation" id="Animation_ycx53"]
+resource_name = "Walking_Crownching"
 length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
@@ -43,12 +54,14 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [6, 7]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qiltd"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xncg5"]
 _data = {
-"dinoCrowching": SubResource("Animation_8ihdw")
+"Blinking": SubResource("Animation_gs078"),
+"WalkingStanding": SubResource("Animation_l7mg8"),
+"Walking_Crownching": SubResource("Animation_ycx53")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -59,70 +72,57 @@ position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_dvvwn")
 
 [node name="ColorRect" type="ColorRect" parent="colisao1"]
-visible = false
 offset_left = -10.0
 offset_right = 10.0
 offset_bottom = 17.0
 color = Color(0.0705882, 1, 1, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="colisao1/ColorRect"]
-visible = false
 layout_mode = 0
 offset_top = -17.0
 offset_right = 20.0
 color = Color(0.905882, 0.917647, 0.247059, 1)
 
-[node name="DinoStanding" type="Sprite2D" parent="colisao1"]
-texture_filter = 1
-scale = Vector2(0.329545, 0.35567)
-texture = ExtResource("2_1cflt")
-hframes = 4
-frame = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="colisao1/DinoStanding"]
-libraries = {
-"": SubResource("AnimationLibrary_7jo27")
-}
-
 [node name="colisao2" type="CollisionShape2D" parent="."]
 process_mode = 4
 visible = false
-position = Vector2(6.99998, 4.75)
+position = Vector2(2, 2)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_dvvwn")
 disabled = true
 
 [node name="ColorRect" type="ColorRect" parent="colisao2"]
-visible = false
 offset_left = -10.0
+offset_top = 3.62396e-05
 offset_right = 10.0
 offset_bottom = 17.0
 color = Color(0.0705882, 1, 1, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect2" type="ColorRect" parent="colisao2/ColorRect"]
-visible = false
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 offset_top = -17.0
 offset_right = 20.0
 color = Color(0.905882, 0.917647, 0.247059, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="DinoCrowching" type="Sprite2D" parent="colisao2"]
-texture_filter = 1
-position = Vector2(-1.92978, -3.2459)
-rotation = -1.5708
-scale = Vector2(0.343152, 0.382939)
-texture = ExtResource("3_7ma07")
-hframes = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="colisao2/DinoCrowching"]
-libraries = {
-"": SubResource("AnimationLibrary_qiltd")
-}
-
 [node name="JumpBuffer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="DinoSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, -2)
+scale = Vector2(0.305085, 0.361702)
+texture = ExtResource("2_1cflt")
+hframes = 6
+vframes = 2
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DinoSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_xncg5")
+}
 
 [connection signal="timeout" from="JumpBuffer" to="." method="_on_timer_timeout"]

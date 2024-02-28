@@ -11,6 +11,4 @@ func _process(delta):
 		zoom = Vector2(1,1)
 		position = Vector2(280,-154)
 		Global.start = true
-		$"../Spawner".start()
-		$"../ScoreIncreaser".start()
 		start.emit()

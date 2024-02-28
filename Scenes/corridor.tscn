@@ -44,5 +44,7 @@ wait_time = 0.1
 script = ExtResource("5_5vvms")
 
 [connection signal="start" from="Camera2D" to="Player" method="_on_camera_2d_start"]
+[connection signal="start" from="Camera2D" to="Spawner" method="_on_camera_2d_start"]
+[connection signal="start" from="Camera2D" to="ScoreIncreaser" method="_on_camera_2d_start"]
 [connection signal="timeout" from="Spawner" to="Spawner" method="_on_timeout"]
 [connection signal="timeout" from="ScoreIncreaser" to="ScoreIncreaser" method="_on_timeout"]

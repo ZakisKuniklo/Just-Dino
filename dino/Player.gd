@@ -54,5 +54,6 @@ func levantar():
 
 
 func _on_camera_2d_start():
-	var animationDino = $colisao1/DinoStanding/AnimationPlayer
-	animationDino.play("dinoStanding")
+	#var animationDino = $colisao1/DinoStanding/AnimationPlayer
+	#animationDino.play("dinoStanding")
+	pass
