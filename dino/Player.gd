@@ -3,15 +3,20 @@ extends CharacterBody2D
 var jump_buffer_time = 0.1
 const SPEED = 300.0
 var JUMP_VELOCITY = -350.0
+var start = false
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _ready():
+	var animationDino = $DinoSprite/AnimationPlayer
+	animationDino.autoplay = "blinking"
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor() and (Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_up")): 
+		jumpAnim()
 		velocity.y += (gravity*0.95) * delta
 	else:
 		velocity.y += gravity * delta
@@ -36,24 +41,40 @@ func _physics_process(delta):
 func pulo():
 	velocity.y = JUMP_VELOCITY
 	
+	
 func abaixar():
 	get_node("colisao2").set_deferred('disabled',false)
 	get_node("colisao2").visible = true
 	get_node("colisao1").set_deferred('disabled',true)
 	get_node("colisao1").visible = false
-	#var animationDino = $colisao2/DinoCrowching/AnimationPlayer
-	#animationDino.play("dinoCrowching")
+	crowch()
+	
 
 func levantar():
 	get_node("colisao2").set_deferred('disabled',true)
 	get_node("colisao2").visible = false
 	get_node("colisao1").set_deferred('disabled',false)
 	get_node("colisao1").visible = true
-	#var animationDino = $colisao1/DinoStanding/AnimationPlayer
-	#animationDino.play("dinoStanding")
+	stand()
+	
 
+func blink():
+	var animationDino = $DinoSprite/AnimationPlayer
+	animationDino.play("Blinking")
+
+func crowch():
+	var animationDino = $DinoSprite/AnimationPlayer
+	animationDino.play("Walking_Crownching")
+
+func stand():
+	var animationDino = $DinoSprite/AnimationPlayer
+	if Global.start:
+		animationDino.play("WalkingStanding")
+
+func jumpAnim():
+	var animationDino = $DinoSprite/AnimationPlayer
+	animationDino.play("Jump")
 
 func _on_camera_2d_start():
-	#var animationDino = $colisao1/DinoStanding/AnimationPlayer
-	#animationDino.play("dinoStanding")
-	pass
+	stand()
+	start = true
