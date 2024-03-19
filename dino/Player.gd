@@ -4,6 +4,7 @@ var jump_buffer_time = 0.1
 const SPEED = 300.0
 var JUMP_VELOCITY = -350.0
 var start = false
+signal death
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -49,6 +50,7 @@ func abaixar():
 	get_node("colisao1").visible = false
 	crowch()
 	
+	
 
 func levantar():
 	get_node("colisao2").set_deferred('disabled',true)
@@ -65,11 +67,18 @@ func blink():
 func crowch():
 	var animationDino = $DinoSprite/AnimationPlayer
 	animationDino.play("Walking_Crownching")
+	$Area2D/CollisionShape2D.position.x = 2
+	$Area2D/CollisionShape2D.position.y = 1
+	$Area2D/CollisionShape2D.rotation = 90
+
 
 func stand():
 	var animationDino = $DinoSprite/AnimationPlayer
 	if Global.start:
 		animationDino.play("WalkingStanding")
+		$Area2D/CollisionShape2D.position.x = 0
+		$Area2D/CollisionShape2D.position.y = -2
+		$Area2D/CollisionShape2D.rotation = 0
 
 func jumpAnim():
 	var animationDino = $DinoSprite/AnimationPlayer
@@ -78,3 +87,10 @@ func jumpAnim():
 func _on_camera_2d_start():
 	stand()
 	start = true
+
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("obstacle"):
+		$DinoSprite.visible = false
+		$DinoSprite2.visible = true
+		death.emit()

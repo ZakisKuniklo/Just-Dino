@@ -1,15 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1t2dk3gg3mjp"]
+[gd_scene load_steps=9 format=3 uid="uid://d1t2dk3gg3mjp"]
 
 [ext_resource type="PackedScene" uid="uid://cbqsxagb7sifd" path="res://dino/player.tscn" id="1_8lrsb"]
+[ext_resource type="Script" path="res://Global.gd" id="1_b41ct"]
 [ext_resource type="PackedScene" uid="uid://wnr8coiy1ik8" path="res://obstacles/cactus1.tscn" id="3_p7n47"]
 [ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="3_y7wpq"]
 [ext_resource type="Script" path="res://Scenes/Spawner.gd" id="4_menf8"]
 [ext_resource type="Script" path="res://Scenes/ScoreIncreaser.gd" id="5_5vvms"]
+[ext_resource type="Script" path="res://Scenes/DeathMenu.gd" id="7_a5moq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_broki"]
 size = Vector2(1442, 20)
 
 [node name="Corridor" type="Node2D"]
+script = ExtResource("1_b41ct")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -43,8 +46,28 @@ script = ExtResource("4_menf8")
 wait_time = 0.1
 script = ExtResource("5_5vvms")
 
+[node name="MenuBar" type="MenuBar" parent="."]
+process_mode = 2
+visible = false
+offset_left = 290.0
+offset_top = -223.0
+offset_right = 355.0
+offset_bottom = -174.0
+script = ExtResource("7_a5moq")
+
+[node name="Death" type="Label" parent="MenuBar"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 5.0
+offset_right = 52.0
+offset_bottom = 23.0
+text = "Death"
+horizontal_alignment = 1
+
+[connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="start" from="Camera2D" to="Player" method="_on_camera_2d_start"]
 [connection signal="start" from="Camera2D" to="Spawner" method="_on_camera_2d_start"]
 [connection signal="start" from="Camera2D" to="ScoreIncreaser" method="_on_camera_2d_start"]
 [connection signal="timeout" from="Spawner" to="Spawner" method="_on_timeout"]
 [connection signal="timeout" from="ScoreIncreaser" to="ScoreIncreaser" method="_on_timeout"]
+[connection signal="restart" from="MenuBar" to="." method="_on_menu_bar_restart"]
