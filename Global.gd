@@ -19,13 +19,15 @@ func _on_player_death():
 	#await get_tree().create_timer(0.1).timeout
 	get_tree().paused = true
 	$MenuBar.visible = true
+	start = false
 	
 
 
 func _on_menu_bar_restart():
 	get_tree().paused = false
-	get_tree().reload_current_scene()
-	start = false
+	for nodes in get_tree().get_nodes_in_group("obstacle"):
+		nodes.queue_free()
 	score = 0
-	spawnSpeed = 3
-	obstacleSpeed = 1.6
+	Global.spawnSpeed = 3
+	Global.obstacleSpeed = 1.6
+	print(score)

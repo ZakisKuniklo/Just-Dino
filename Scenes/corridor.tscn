@@ -65,9 +65,14 @@ text = "Death"
 horizontal_alignment = 1
 
 [connection signal="death" from="Player" to="." method="_on_player_death"]
+[connection signal="death" from="Player" to="Spawner" method="_on_player_death"]
+[connection signal="death" from="Player" to="ScoreIncreaser" method="_on_player_death"]
 [connection signal="start" from="Camera2D" to="Player" method="_on_camera_2d_start"]
 [connection signal="start" from="Camera2D" to="Spawner" method="_on_camera_2d_start"]
 [connection signal="start" from="Camera2D" to="ScoreIncreaser" method="_on_camera_2d_start"]
 [connection signal="timeout" from="Spawner" to="Spawner" method="_on_timeout"]
 [connection signal="timeout" from="ScoreIncreaser" to="ScoreIncreaser" method="_on_timeout"]
 [connection signal="restart" from="MenuBar" to="." method="_on_menu_bar_restart"]
+[connection signal="restart" from="MenuBar" to="Player" method="_on_menu_bar_restart"]
+[connection signal="restart" from="MenuBar" to="Spawner" method="_on_menu_bar_restart"]
+[connection signal="restart" from="MenuBar" to="ScoreIncreaser" method="_on_menu_bar_restart"]

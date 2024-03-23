@@ -19,7 +19,7 @@ offset_right = -5.0
 offset_bottom = 10.0
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect2" type="ColorRect" parent="ColorRect"]
+[node name="ColorRect2" type="ColorRect" parent="ColorRect" groups=["obstacle"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1

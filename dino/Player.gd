@@ -94,3 +94,9 @@ func _on_area_2d_body_entered(body):
 		$DinoSprite.visible = false
 		$DinoSprite2.visible = true
 		death.emit()
+
+
+func _on_menu_bar_restart():
+	levantar()
+	$DinoSprite.visible = true
+	$DinoSprite2.visible = false

@@ -12,7 +12,7 @@ script = ExtResource("1_0gjmh")
 position = Vector2(-5.5, -7)
 shape = SubResource("RectangleShape2D_5qu3m")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." groups=["obstacle"]]
 offset_left = -10.0
 offset_top = -24.0
 offset_bottom = 10.0
