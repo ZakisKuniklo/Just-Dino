@@ -30,4 +30,4 @@ func _on_menu_bar_restart():
 	score = 0
 	Global.spawnSpeed = 3
 	Global.obstacleSpeed = 1.6
-	print(score)
+	$MenuBar.visible = false

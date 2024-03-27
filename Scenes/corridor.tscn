@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1t2dk3gg3mjp"]
+[gd_scene load_steps=10 format=3 uid="uid://d1t2dk3gg3mjp"]
 
 [ext_resource type="PackedScene" uid="uid://cbqsxagb7sifd" path="res://dino/player.tscn" id="1_8lrsb"]
 [ext_resource type="Script" path="res://Global.gd" id="1_b41ct"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/Spawner.gd" id="4_menf8"]
 [ext_resource type="Script" path="res://Scenes/ScoreIncreaser.gd" id="5_5vvms"]
 [ext_resource type="Script" path="res://Scenes/DeathMenu.gd" id="7_a5moq"]
+[ext_resource type="Script" path="res://Scenes/Score Counter.gd" id="8_1cies"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_broki"]
 size = Vector2(1442, 20)
@@ -48,7 +49,6 @@ script = ExtResource("5_5vvms")
 
 [node name="MenuBar" type="MenuBar" parent="."]
 process_mode = 2
-visible = false
 offset_left = 290.0
 offset_top = -223.0
 offset_right = 355.0
@@ -63,6 +63,14 @@ offset_right = 52.0
 offset_bottom = 23.0
 text = "Death"
 horizontal_alignment = 1
+
+[node name="Score Counter" type="Label" parent="."]
+offset_left = 512.0
+offset_top = -262.0
+offset_right = 536.0
+offset_bottom = -239.0
+text = "00"
+script = ExtResource("8_1cies")
 
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="death" from="Player" to="Spawner" method="_on_player_death"]
