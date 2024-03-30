@@ -21,14 +21,11 @@ func _on_timeout():
 	print(Global.score)
 	
 
-
-func _on_camera_2d_start():
-	start()
-
-
 func _on_player_death():
 	stop()
 
-
 func _on_menu_bar_restart():
+	start()
+
+func _on_corridor_start_game():
 	start()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1t2dk3gg3mjp"]
+[gd_scene load_steps=11 format=3 uid="uid://d1t2dk3gg3mjp"]
 
 [ext_resource type="PackedScene" uid="uid://cbqsxagb7sifd" path="res://dino/player.tscn" id="1_8lrsb"]
 [ext_resource type="Script" path="res://Global.gd" id="1_b41ct"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/ScoreIncreaser.gd" id="5_5vvms"]
 [ext_resource type="Script" path="res://Scenes/DeathMenu.gd" id="7_a5moq"]
 [ext_resource type="Script" path="res://Scenes/Score Counter.gd" id="8_1cies"]
+[ext_resource type="PackedScene" uid="uid://eovx6amd0qvu" path="res://Systems/key_listener.tscn" id="9_rw18p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_broki"]
 size = Vector2(1442, 20)
@@ -49,6 +50,7 @@ script = ExtResource("5_5vvms")
 
 [node name="MenuBar" type="MenuBar" parent="."]
 process_mode = 2
+visible = false
 offset_left = 290.0
 offset_top = -223.0
 offset_right = 355.0
@@ -72,15 +74,19 @@ offset_bottom = -239.0
 text = "00"
 script = ExtResource("8_1cies")
 
+[node name="KeyListener" parent="." instance=ExtResource("9_rw18p")]
+
+[connection signal="startGame" from="." to="Player" method="_on_corridor_start_game"]
+[connection signal="startGame" from="." to="Camera2D" method="_on_corridor_start_game"]
+[connection signal="startGame" from="." to="Spawner" method="_on_corridor_start_game"]
+[connection signal="startGame" from="." to="ScoreIncreaser" method="_on_corridor_start_game"]
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="death" from="Player" to="Spawner" method="_on_player_death"]
 [connection signal="death" from="Player" to="ScoreIncreaser" method="_on_player_death"]
-[connection signal="start" from="Camera2D" to="Player" method="_on_camera_2d_start"]
-[connection signal="start" from="Camera2D" to="Spawner" method="_on_camera_2d_start"]
-[connection signal="start" from="Camera2D" to="ScoreIncreaser" method="_on_camera_2d_start"]
 [connection signal="timeout" from="Spawner" to="Spawner" method="_on_timeout"]
 [connection signal="timeout" from="ScoreIncreaser" to="ScoreIncreaser" method="_on_timeout"]
 [connection signal="restart" from="MenuBar" to="." method="_on_menu_bar_restart"]
 [connection signal="restart" from="MenuBar" to="Player" method="_on_menu_bar_restart"]
 [connection signal="restart" from="MenuBar" to="Spawner" method="_on_menu_bar_restart"]
 [connection signal="restart" from="MenuBar" to="ScoreIncreaser" method="_on_menu_bar_restart"]
+[connection signal="keyPressed" from="KeyListener" to="." method="_on_key_listener_key_pressed"]

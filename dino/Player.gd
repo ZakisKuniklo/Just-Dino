@@ -84,9 +84,7 @@ func jumpAnim():
 	var animationDino = $DinoSprite/AnimationPlayer
 	animationDino.play("Jump")
 
-func _on_camera_2d_start():
-	stand()
-	start = true
+
 
 
 func _on_area_2d_body_entered(body):
@@ -100,3 +98,9 @@ func _on_menu_bar_restart():
 	levantar()
 	$DinoSprite.visible = true
 	$DinoSprite2.visible = false
+
+func _on_corridor_start_game():
+	stand()
+	start = true
+
+

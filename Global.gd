@@ -1,9 +1,11 @@
 extends Node
 
+signal startGame
 var start = false
 var score = 0
 var spawnSpeed = 3
 var obstacleSpeed = 1.6
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,3 +33,9 @@ func _on_menu_bar_restart():
 	Global.spawnSpeed = 3
 	Global.obstacleSpeed = 1.6
 	$MenuBar.visible = false
+
+
+func _on_key_listener_key_pressed():
+	if Global.start == false:
+		Global.start = true
+		startGame.emit()

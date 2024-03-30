@@ -1,0 +1,194 @@
+[gd_scene load_steps=12 format=3 uid="uid://cbqsxagb7sifd"]
+
+[ext_resource type="Script" path="res://dino/Player.gd" id="1_25lb7"]
+[ext_resource type="Texture2D" uid="uid://c5il7rwjpwi7n" path="res://dino/dino.png" id="2_1cflt"]
+[ext_resource type="Script" path="res://dino/PlayerKeyListener.gd" id="3_hxhd6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvvwn"]
+size = Vector2(19.75, 34)
+
+[sub_resource type="Animation" id="Animation_gs078"]
+resource_name = "Blinking"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_lyumj"]
+resource_name = "Jump"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_l7mg8"]
+resource_name = "WalkingStanding"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ycx53"]
+resource_name = "Walking_Crownching"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_uqwdq"]
+resource_name = "dead"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xncg5"]
+_data = {
+"Blinking": SubResource("Animation_gs078"),
+"Jump": SubResource("Animation_lyumj"),
+"WalkingStanding": SubResource("Animation_l7mg8"),
+"Walking_Crownching": SubResource("Animation_ycx53"),
+"dead": SubResource("Animation_uqwdq")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2m7n"]
+size = Vector2(22, 35)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_25lb7")
+
+[node name="colisao1" type="CollisionShape2D" parent="."]
+position = Vector2(0.125, -2)
+shape = SubResource("RectangleShape2D_dvvwn")
+debug_color = Color(0, 0.6, 0.701961, 0.494118)
+
+[node name="ColorRect" type="ColorRect" parent="colisao1"]
+visible = false
+offset_left = -10.0
+offset_right = 10.0
+offset_bottom = 17.0
+color = Color(0.0705882, 1, 1, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="colisao1/ColorRect"]
+visible = false
+layout_mode = 0
+offset_top = -17.0
+offset_right = 20.0
+color = Color(0.905882, 0.917647, 0.247059, 1)
+
+[node name="colisao2" type="CollisionShape2D" parent="."]
+process_mode = 4
+position = Vector2(2, 2)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_dvvwn")
+disabled = true
+
+[node name="ColorRect" type="ColorRect" parent="colisao2"]
+visible = false
+offset_left = -10.0
+offset_top = 3.62396e-05
+offset_right = 10.0
+offset_bottom = 17.0
+color = Color(0.0705882, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="colisao2/ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+offset_top = -17.0
+offset_right = 20.0
+color = Color(0.905882, 0.917647, 0.247059, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="JumpBuffer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="DinoSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, -2)
+scale = Vector2(0.305085, 0.361702)
+texture = ExtResource("2_1cflt")
+hframes = 6
+vframes = 2
+frame = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DinoSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_xncg5")
+}
+autoplay = "Blinking"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_r2m7n")
+
+[node name="DinoSprite2" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture_filter = 1
+position = Vector2(1, -2)
+scale = Vector2(0.305085, 0.361702)
+texture = ExtResource("2_1cflt")
+hframes = 6
+vframes = 2
+frame = 4
+
+[node name="PlayerKeyListener" type="Node" parent="."]
+script = ExtResource("3_hxhd6")
+
+[connection signal="timeout" from="JumpBuffer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="down" from="PlayerKeyListener" to="." method="_on_player_key_listener_down"]
+[connection signal="up" from="PlayerKeyListener" to="." method="_on_player_key_listener_up"]

@@ -10,7 +10,6 @@ var obstaculo
 
 func _on_timeout():
 	randomObstacle = rng.randi_range(1, 3)
-	print(randomObstacle)
 	match randomObstacle:
 		1:
 			obstaculo = cactus1.instantiate()
@@ -26,14 +25,11 @@ func _on_timeout():
 
 
 
-func _on_camera_2d_start():
-	start()
-	
-
-
 func _on_player_death():
 	stop()
 
-
 func _on_menu_bar_restart():
+	start()
+
+func _on_corridor_start_game():
 	start()
