@@ -13,6 +13,8 @@ func _process(delta):
 
 func _on_timeout():
 	Global.score +=1
+	if Global.score > Global.highScore:
+		Global.highScore = Global.score
 	if(Global.score % 20 == 0):
 		Global.spawnSpeed -= 0.05
 		Global.spawnSpeed = clamp(Global.spawnSpeed,0.5,3)

@@ -3,6 +3,7 @@ extends Node
 signal startGame
 var start = false
 var score = 0
+var highScore = 0
 var spawnSpeed = 3
 var obstacleSpeed = 1.6
 

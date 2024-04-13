@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1t2dk3gg3mjp"]
+[gd_scene load_steps=12 format=3 uid="uid://d1t2dk3gg3mjp"]
 
 [ext_resource type="PackedScene" uid="uid://cbqsxagb7sifd" path="res://dino/player.tscn" id="1_8lrsb"]
 [ext_resource type="Script" path="res://Global.gd" id="1_b41ct"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scenes/DeathMenu.gd" id="7_a5moq"]
 [ext_resource type="Script" path="res://Scenes/Score Counter.gd" id="8_1cies"]
 [ext_resource type="PackedScene" uid="uid://eovx6amd0qvu" path="res://Systems/key_listener.tscn" id="9_rw18p"]
+[ext_resource type="Script" path="res://Scenes/highScore.gd" id="10_wwfoy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_broki"]
 size = Vector2(1442, 20)
@@ -75,6 +76,14 @@ text = "00"
 script = ExtResource("8_1cies")
 
 [node name="KeyListener" parent="." instance=ExtResource("9_rw18p")]
+
+[node name="highScore" type="Label" parent="."]
+offset_left = 454.0
+offset_top = -263.0
+offset_right = 494.0
+offset_bottom = -240.0
+text = "00"
+script = ExtResource("10_wwfoy")
 
 [connection signal="startGame" from="." to="Player" method="_on_corridor_start_game"]
 [connection signal="startGame" from="." to="Camera2D" method="_on_corridor_start_game"]
