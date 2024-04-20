@@ -4,12 +4,13 @@ extends Timer
 var rng = RandomNumberGenerator.new()
 var cactus1 = preload("res://obstacles/cactus1.tscn")
 var cactus2 = preload("res://obstacles/2catus1.tscn")
+var cactus3 = preload("res://obstacles/3cactus1.tscn")
 var aerodactyl = preload("res://obstacles/aerodactyl.tscn")
 var randomObstacle = 0
 var obstaculo
 
 func _on_timeout():
-	randomObstacle = rng.randi_range(1, 3)
+	randomObstacle = rng.randi_range(1, 5)
 	match randomObstacle:
 		1:
 			obstaculo = cactus1.instantiate()
@@ -19,6 +20,12 @@ func _on_timeout():
 			obstaculo.position = Vector2(592,-45)
 		3:
 			obstaculo = cactus2.instantiate()
+			obstaculo.position = Vector2(592,-20)
+		4:
+			obstaculo = aerodactyl.instantiate()
+			obstaculo.position = Vector2(592,-30)
+		5:
+			obstaculo = cactus3.instantiate()
 			obstaculo.position = Vector2(592,-20)
 	add_child(obstaculo)
 	wait_time = Global.spawnSpeed

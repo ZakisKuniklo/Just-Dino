@@ -78,10 +78,10 @@ script = ExtResource("8_1cies")
 [node name="KeyListener" parent="." instance=ExtResource("9_rw18p")]
 
 [node name="highScore" type="Label" parent="."]
-offset_left = 454.0
-offset_top = -263.0
-offset_right = 494.0
-offset_bottom = -240.0
+offset_left = 413.0
+offset_top = -262.0
+offset_right = 453.0
+offset_bottom = -239.0
 text = "00"
 script = ExtResource("10_wwfoy")
 

@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://lh7dubpnj1q5"]
+
+[ext_resource type="Script" path="res://obstacles/2cactus1.gd" id="1_gw6nk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qu3m"]
+size = Vector2(9, 34)
+
+[node name="StaticBody2D" type="StaticBody2D" groups=["obstacle"]]
+script = ExtResource("1_gw6nk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.5, -7)
+shape = SubResource("RectangleShape2D_5qu3m")
+
+[node name="ColorRect" type="ColorRect" parent="." groups=["obstacle"]]
+offset_left = -10.0
+offset_top = -24.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(4.5, -7)
+shape = SubResource("RectangleShape2D_5qu3m")
+
+[node name="ColorRect2" type="ColorRect" parent="." groups=["obstacle"]]
+offset_top = -24.0
+offset_right = 10.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(14.5, -7)
+shape = SubResource("RectangleShape2D_5qu3m")
+
+[node name="ColorRect3" type="ColorRect" parent="." groups=["obstacle"]]
+offset_left = 10.0
+offset_top = -24.0
+offset_right = 20.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
