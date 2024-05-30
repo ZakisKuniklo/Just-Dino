@@ -8,7 +8,7 @@ size = Vector2(11, 29)
 
 [sub_resource type="Animation" id="Animation_o187q"]
 resource_name = "Aerodactyl"
-length = 0.5
+length = 0.3
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -17,7 +17,7 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
@@ -50,6 +50,7 @@ rotation = -1.5708
 scale = Vector2(0.331216, 0.331216)
 texture = ExtResource("2_77vs5")
 hframes = 2
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {

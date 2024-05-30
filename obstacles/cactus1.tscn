@@ -1,21 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://wnr8coiy1ik8"]
+[gd_scene load_steps=4 format=3 uid="uid://wnr8coiy1ik8"]
 
 [ext_resource type="Script" path="res://obstacles/2cactus1.gd" id="1_0gjmh"]
+[ext_resource type="Texture2D" uid="uid://bwvnm64e1vj0u" path="res://obstacles/minicactus.png" id="2_406xc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5qu3m"]
-size = Vector2(6, 19)
+size = Vector2(6, 23.5)
 
 [node name="StaticBody2D" type="StaticBody2D" groups=["obstacle"]]
 position = Vector2(10, -10)
 script = ExtResource("1_0gjmh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-7, 0.5)
+position = Vector2(-6, -2.25)
 shape = SubResource("RectangleShape2D_5qu3m")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -10.0
 offset_top = -9.0
 offset_right = -4.0
 offset_bottom = 10.0
 metadata/_edit_use_anchors_ = true
+
+[node name="Minicactus" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-6, -2.31618)
+scale = Vector2(0.352941, 0.345588)
+texture = ExtResource("2_406xc")
+hframes = 6
+frame = 3
