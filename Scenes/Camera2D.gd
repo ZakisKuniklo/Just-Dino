@@ -12,6 +12,6 @@ func _process(delta):
 
 
 func _on_corridor_start_game():
-	#zoom = Vector2(1,1)
-	#position = Vector2(280,-154)
+	zoom = Vector2(1.5,1.5)
+	position = Vector2(181,-98)
 	pass

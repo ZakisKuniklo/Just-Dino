@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1t2dk3gg3mjp"]
+[gd_scene load_steps=17 format=3 uid="uid://d1t2dk3gg3mjp"]
 
 [ext_resource type="PackedScene" uid="uid://cbqsxagb7sifd" path="res://dino/player.tscn" id="1_8lrsb"]
 [ext_resource type="Script" path="res://Global.gd" id="1_b41ct"]
@@ -10,9 +10,22 @@
 [ext_resource type="Script" path="res://Scenes/Score Counter.gd" id="8_1cies"]
 [ext_resource type="PackedScene" uid="uid://eovx6amd0qvu" path="res://Systems/key_listener.tscn" id="9_rw18p"]
 [ext_resource type="Script" path="res://Scenes/highScore.gd" id="10_wwfoy"]
+[ext_resource type="Texture2D" uid="uid://cv8upx4pry51a" path="res://ground.png" id="11_2u5ks"]
+[ext_resource type="Shader" path="res://Scenes/corridorground.gdshader" id="11_ocr6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_broki"]
 size = Vector2(1442, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gd1cj"]
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_ojwf6"]
+font_size = 14
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_132sk"]
+shader = ExtResource("11_ocr6e")
+shader_parameter/direction = Vector2(1, 0)
+shader_parameter/speed_scale = 0.1
 
 [node name="Corridor" type="Node2D"]
 script = ExtResource("1_b41ct")
@@ -20,21 +33,22 @@ script = ExtResource("1_b41ct")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = -2
 position = Vector2(711, 0)
 shape = SubResource("RectangleShape2D_broki")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D/CollisionShape2D"]
+offset_left = -723.0
+offset_top = 5.0
+offset_right = 728.0
+offset_bottom = 33.0
 
 [node name="Player" parent="." instance=ExtResource("1_8lrsb")]
 position = Vector2(29, -29)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 1439.0
-offset_bottom = 10.0
-
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(181, -98)
-zoom = Vector2(1.5, 1.5)
+position = Vector2(57, -43)
+zoom = Vector2(5, 5)
 script = ExtResource("3_y7wpq")
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("3_p7n47")]
@@ -52,40 +66,58 @@ script = ExtResource("5_5vvms")
 [node name="MenuBar" type="MenuBar" parent="."]
 process_mode = 2
 visible = false
-offset_left = 290.0
-offset_top = -223.0
-offset_right = 355.0
-offset_bottom = -174.0
+offset_left = 142.0
+offset_top = -139.0
+offset_right = 228.0
+offset_bottom = -90.0
 script = ExtResource("7_a5moq")
 
 [node name="Death" type="Label" parent="MenuBar"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 5.0
-offset_right = 52.0
-offset_bottom = 23.0
-text = "Death"
+offset_left = 1.0
+offset_top = 11.0
+offset_right = 88.0
+offset_bottom = 34.0
+text = "Game Over"
 horizontal_alignment = 1
 
 [node name="Score Counter" type="Label" parent="."]
 texture_filter = 1
-offset_left = 241.0
-offset_top = -150.0
-offset_right = 265.0
-offset_bottom = -127.0
+offset_left = 292.0
+offset_top = -193.0
+offset_right = 347.0
+offset_bottom = -170.0
 text = "00"
+label_settings = SubResource("LabelSettings_gd1cj")
+horizontal_alignment = 2
 script = ExtResource("8_1cies")
 
 [node name="KeyListener" parent="." instance=ExtResource("9_rw18p")]
 
 [node name="highScore" type="Label" parent="."]
 texture_filter = 1
-offset_left = 173.0
-offset_top = -151.0
-offset_right = 213.0
-offset_bottom = -128.0
+offset_left = 170.0
+offset_top = -194.0
+offset_right = 266.0
+offset_bottom = -171.0
 text = "00"
+label_settings = SubResource("LabelSettings_ojwf6")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 script = ExtResource("10_wwfoy")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_132sk")
+offset_left = -11.0
+offset_top = -21.0
+offset_right = 2391.0
+offset_bottom = 6.0
+texture = ExtResource("11_2u5ks")
+stretch_mode = 1
 
 [connection signal="startGame" from="." to="Player" method="_on_corridor_start_game"]
 [connection signal="startGame" from="." to="Camera2D" method="_on_corridor_start_game"]

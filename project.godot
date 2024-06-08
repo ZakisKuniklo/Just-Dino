@@ -27,3 +27,4 @@ Global="*res://Global.gd"
 window/size/viewport_width=576
 window/size/viewport_height=324
 window/size/resizable=false
+window/stretch/mode="canvas_items"

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ca0x2r5garj4p"]
+[gd_scene load_steps=4 format=3 uid="uid://ca0x2r5garj4p"]
 
 [ext_resource type="Script" path="res://obstacles/2cactus1.gd" id="1_8sfla"]
+[ext_resource type="Texture2D" uid="uid://biuttvsccpqp6" path="res://obstacles/bigcactus.png" id="2_ekvbc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6gyao"]
 size = Vector2(10, 34)
@@ -13,6 +14,7 @@ position = Vector2(-5, -7)
 shape = SubResource("RectangleShape2D_6gyao")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -10.0
 offset_top = -24.0
 offset_bottom = 10.0
@@ -23,7 +25,23 @@ position = Vector2(5, -7)
 shape = SubResource("RectangleShape2D_6gyao")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 offset_top = -24.0
 offset_right = 10.0
 offset_bottom = 10.0
 metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(7.48391, -5.99745)
+scale = Vector2(0.356486, 0.356486)
+texture = ExtResource("2_ekvbc")
+hframes = 4
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-6.07813, -5.52328)
+scale = Vector2(0.364158, 0.365876)
+texture = ExtResource("2_ekvbc")
+hframes = 4
+frame = 2
